@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-s
 from django.shortcuts import render
-from django.http.response import HttpResponse
+
+from query.models import BusinessMan
+
 
 # Create your views here.
-
 def index(request):
-    return HttpResponse('ok')
+    business_men = BusinessMan.objects.all()
+    return render(request, 'index.html', locals())
