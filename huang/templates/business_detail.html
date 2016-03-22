@@ -16,33 +16,25 @@ table td{border:1px solid black}
 <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/bootstrap-table.js' %}"></script>
-<script>
-$(function () {
-	
-$('#ttt2').on('click-row.bs.table', function (e, row) {
-	window.location.href='/detail/'+row[0];
-});
-});
-</script>
 </head>
 <body>
 <div id="home">
-<table id="ttt2" data-toggle="table">
+<table id="table" data-toggle="table">
     <thead>
         <tr>
-            <th data-visible="false">id</th>
-            <th>业务员</th>
-            <th>业绩</th>
+            <th>类型</th>
+            <th>金额</th>
+            <th>客户</th>
+            <th>时间</th>
         </tr>
     </thead>
     <tbody>
-    {% for business_man in business_men %}
-	<tr><td>{{business_man.id}}</td><td>{{business_man.name}}</td><td>{{business_man.achievement}}</td></tr>
+    {% for onebusiness in business %}
+	<tr><td>{% if onebusiness.type == 1 %}存入{% else %}支出{% endif %}</td><td>{{onebusiness.money}}</td><td>{{onebusiness.customer}}</td><td>{{onebusiness.business_time}}</td></tr>
 	{% endfor %}
     </tbody>
 </table>
-<button type="button" class="btn btn-primary">录入</button>
-<button type="button" class="btn btn-success">管理客户关系</button>
+<a type="button" class="btn btn-primary" href="{% url 'query:index'%}">返回</a>
 </div>
 </body>
 </html>

@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//query/models.py=utf-8
 encoding//query/urls.py=utf-8
+encoding//query/views.py=utf-8
