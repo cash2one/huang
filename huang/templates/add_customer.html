@@ -1,0 +1,40 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE HTML>
+<html>
+<head>
+{% block title %}
+<title>录入业务</title>
+{% endblock %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+table td{border:1px solid black}
+.fixed-table-loading{display:none}
+html body{text-align:center}
+</style>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-5">
+     <form action="{% url 'query:add_customer' %}" method="POST">
+    {% csrf_token %}
+        <label>输入客户姓名</label>
+        <input type="text" name="customer_name" class="form-control">
+        <label>选择经理</label>
+        <select name="business_man_id" class="form-control">
+        {% for business_man in all_business_man %}
+            <option value="{{business_man.id}}">{{business_man}}</option>
+        {% endfor %}
+        </select>
+        <button type="commit" class="btn btn-primary">确认</button>
+        <a type="button" class="btn btn-primary" href="{% url 'query:index'%}">返回</a>
+    </form>
+    </div>
+</div>
+</body>
+</html>

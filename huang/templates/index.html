@@ -4,7 +4,7 @@
 <html>
 <head>
 {% block title %}
-<title>Home</title>
+<title>主页</title>
 {% endblock %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,7 +18,7 @@ table td{border:1px solid black}
 <script src="{% static 'js/bootstrap-table.js' %}"></script>
 <script>
 $(function () {
-	
+
 $('#ttt2').on('click-row.bs.table', function (e, row) {
 	window.location.href='/detail/'+row[0];
 });
@@ -41,8 +41,8 @@ $('#ttt2').on('click-row.bs.table', function (e, row) {
 	{% endfor %}
     </tbody>
 </table>
-<button type="button" class="btn btn-primary">录入</button>
-<button type="button" class="btn btn-success">管理客户关系</button>
+<a type="button" class="btn btn-primary" href="{% url 'query:add_business'%}">录入</a>
+<a type="button" class="btn btn-success" href="{% url 'query:add_customer'%}">添加客户关系</a>
 </div>
 </body>
 </html>

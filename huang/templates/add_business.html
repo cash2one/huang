@@ -1,0 +1,45 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE HTML>
+<html>
+<head>
+{% block title %}
+<title>添加客户</title>
+{% endblock %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+table td{border:1px solid black}
+.fixed-table-loading{display:none}
+html body{text-align:center}
+</style>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-5">
+    <form action="{% url 'query:add_business' %}" method="POST">
+    {% csrf_token %}
+        <label>选择客户</label>
+        <select name="customer_id" class="form-control">
+        {% for customer in all_customer %}
+            <option value="{{customer.id}}">{{customer}}</option>
+        {% endfor %}
+        </select>
+        <label>选择类型</label>
+        <select name="business_type" class="form-control">
+            <option value="1">存入</option>
+            <option value="2">支出</option>
+        </select>
+        <label>输入金额</label>
+        <input type="text" name="amount" class="form-control">
+        <button type="commit" class="btn btn-primary">确认</button>
+        <a type="button" class="btn btn-primary" href="{% url 'query:index'%}">返回</a>
+    </form>
+    </div>
+</div>
+</body>
+</html>
